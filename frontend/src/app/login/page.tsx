@@ -27,10 +27,10 @@ export default function LoginPage() {
       ">
 
         <h1 className="text-3xl font-bold text-center text-blue-400 drop-shadow-lg">
-          Welcome Back ☁️ 
-        </h1>
+        Welcome Back ☁️ 
+        </h1><br></br>
         <p className="text-center text-blue-950/70 mb-6">
-          Log in to your SkyBoard
+        Log in to your SkyBoard
         </p>
 
         <input

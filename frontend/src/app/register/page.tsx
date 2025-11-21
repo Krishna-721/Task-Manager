@@ -31,7 +31,7 @@ export default function RegisterPage() {
         p-8 rounded-3xl shadow-2xl
       ">
 
-        <h1 className="text-3xl font-bold text-center text-blue-600 drop-shadow-lg">
+        <h1 className="text-3xl font-bold text-center text-blue-400 drop-shadow-lg">
           Create your Account to become a Traveler! 🌤
         </h1><br></br>
         <p className="text-center text-black/70 mb-6">

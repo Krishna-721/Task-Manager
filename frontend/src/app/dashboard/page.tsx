@@ -27,11 +27,9 @@ export default function DashboardPage() {
   const [newTask, setNewTask] = useState({ title: "", description: "" });
   const [loading, setLoading] = useState(true);
 
-  // 🔵 EDIT MODAL STATE
   const [editingTask, setEditingTask] = useState<any | null>(null);
   const [editData, setEditData] = useState({ title: "", description: "" });
 
-  // 🔍 Filters & Sorting
   const [search, setSearch] = useState("");
   const [filterColumn, setFilterColumn] = useState("all");
   const [filterCompletion, setFilterCompletion] = useState("all");
@@ -39,9 +37,6 @@ export default function DashboardPage() {
 
   const columns = ["todo", "in_progress", "done"];
 
-  // ------------------------------
-  // LOAD USER + TASKS
-  // ------------------------------
   useEffect(() => {
     async function load() {
       try {
@@ -58,9 +53,6 @@ export default function DashboardPage() {
     load();
   }, []);
 
-  // ------------------------------
-  // DRAG & DROP
-  // ------------------------------
   const onDragEnd = async (result: any) => {
     if (!result.destination) return;
 
@@ -74,9 +66,7 @@ export default function DashboardPage() {
     );
   };
 
-  // ------------------------------
-  // CREATE TASK
-  // ------------------------------
+
   const handleCreate = async () => {
     if (!newTask.title.trim()) return;
 
@@ -91,9 +81,6 @@ export default function DashboardPage() {
     setNewTask({ title: "", description: "" });
   };
 
-  // ------------------------------
-  // TOGGLE DONE/UNDO
-  // ------------------------------
   const handleToggle = async (task: any) => {
     const updated = await updateTask(task.id, {
       completed: !task.completed,
@@ -107,17 +94,12 @@ export default function DashboardPage() {
     );
   };
 
-  // ------------------------------
-  // DELETE TASK
-  // ------------------------------
+  
   const handleDelete = async (id: string) => {
     await deleteTask(id);
     setTasks((prev) => prev.filter((t) => t.id !== id));
   };
 
-  // ------------------------------
-  // OPEN EDIT MODAL
-  // ------------------------------
   const openEditModal = (task: any) => {
     setEditingTask(task);
     setEditData({
@@ -126,9 +108,6 @@ export default function DashboardPage() {
     });
   };
 
-  // ------------------------------
-  // SAVE EDIT
-  // ------------------------------
   const saveEdit = async () => {
     if (!editingTask) return;
 
@@ -152,9 +131,6 @@ export default function DashboardPage() {
     router.replace("/login");
   };
 
-  // ------------------------------
-  // PROCESS TASKS: search + filters + sort
-  // ------------------------------
   const processedTasks = tasks
     .filter((t) =>
       t.title.toLowerCase().includes(search.toLowerCase()) ||
@@ -181,11 +157,8 @@ export default function DashboardPage() {
 
   return 0;
 });
-  
 
-  // ------------------------------
-  // LOADING SCREEN
-  // ------------------------------
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-sky-300">
@@ -194,9 +167,6 @@ export default function DashboardPage() {
     );
   }
 
-  // ------------------------------
-  // UI
-  // ------------------------------
   return (
     <div
       className="min-h-screen p-10 text-gray-900 relative overflow-hidden"
@@ -204,12 +174,10 @@ export default function DashboardPage() {
         background: `linear-gradient(to bottom, #7ecbff 0%, #a6dcff 40%, #dff3ff 100%)`,
       }}
     >
-      {/* Clouds */}
       <div className="absolute top-10 left-10 w-64 h-32 bg-white/70 blur-3xl rounded-full"></div>
       <div className="absolute top-40 right-10 w-72 h-40 bg-white/60 blur-3xl rounded-full"></div>
       <div className="absolute bottom-32 left-20 w-80 h-48 bg-white/50 blur-[90px] rounded-full"></div>
 
-      {/* Title */}
       <div className="text-center relative z-10">
         <h1 className="text-5xl font-bold tracking-tight text-white drop-shadow-lg">
           空へ — To the Sky
@@ -219,7 +187,6 @@ export default function DashboardPage() {
         </p>
       </div>
 
-      {/* Profile section */}
       <div className="relative z-10 flex justify-between max-w-5xl mx-auto mt-10">
         <h2 className="text-xl font-semibold text-white drop-shadow-lg">
           Welcome to SkyBoard, {profile?.name || profile?.email}
@@ -246,7 +213,6 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* Create Task */}
       <div className="relative z-10 max-w-5xl mx-auto mt-10 backdrop-blur-xl bg-white/40 border border-white/50 p-6 rounded-3xl shadow-2xl">
         <input
           className="w-full p-3 rounded-xl bg-white/50 text-gray-900 mb-3 shadow-inner"
@@ -270,10 +236,8 @@ export default function DashboardPage() {
         </button>
       </div>
 
-      {/* SEARCH + FILTERS + SORT */}
       <div className="relative z-10 max-w-6xl mx-auto mt-8 flex flex-wrap gap-4 items-center justify-between">
 
-        {/* SEARCH */}
         <input
           type="text"
           placeholder="🔍 Search tasks..."
@@ -282,7 +246,6 @@ export default function DashboardPage() {
           onChange={(e) => setSearch(e.target.value)}
         />
 
-        {/* COLUMN FILTER */}
         <select
           className="p-3 rounded-xl bg-white/60 backdrop-blur-xl text-gray-900 border border-white/50"
           value={filterColumn}
@@ -294,7 +257,6 @@ export default function DashboardPage() {
           <option value="done">Done</option>
         </select>
 
-        {/* COMPLETION FILTER */}
         <select
           className="p-3 rounded-xl bg-white/60 backdrop-blur-xl text-gray-900 border border-white/50"
           value={filterCompletion}
@@ -305,7 +267,6 @@ export default function DashboardPage() {
           <option value="pending">Pending</option>
         </select>
 
-        {/* SORT */}
         <select
           className="p-3 rounded-xl bg-white/60 backdrop-blur-xl text-gray-900 border border-white/50"
           value={sortOrder}
@@ -318,7 +279,6 @@ export default function DashboardPage() {
         </select>
       </div>
 
-      {/* KANBAN BOARD */}
       <DragDropContext onDragEnd={onDragEnd}>
         <div className="relative z-10 grid grid-cols-3 gap-6 max-w-6xl mx-auto mt-10">
           {columns.map((col) => (
@@ -367,7 +327,6 @@ export default function DashboardPage() {
         </div>
       </DragDropContext>
 
-      {/* EDIT MODAL */}
       {editingTask && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50">
           <div className="bg-white/80 backdrop-blur-xl p-6 rounded-3xl w-[400px] shadow-2xl border border-white/60">
