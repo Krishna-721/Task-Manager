@@ -48,3 +48,6 @@ debug.log
 ######################
 .idea/
 .vscode/
+
+#virtual env
+internship/
