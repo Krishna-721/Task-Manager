@@ -332,57 +332,34 @@ Validation example:
   ]
 }
 
-8. Scaling Notes (Production Ready Plan)
-Frontend Scaling (Vercel)
+8. Production Scaling Notes
+Frontend (Vercel)
+Global CDN caching
+Image optimization
+Edge Middleware for auth redirects
+Production API environment variables
+Error boundaries + TypeScript checks
 
-Automatic global CDN caching
-
-Image + script optimization
-
-Edge middleware for auth redirects
-
-.env.production for API URL
-
-Strict TypeScript + error boundaries
-
-Backend Scaling (Render/Railway)
-
-Auto-scaling dynos
-
-Separate worker for async jobs
-
+Backend (Render / Railway / Docker)
+Auto-scaling instances
 CORS restricted to frontend domain
+Async worker processes
+Centralized logging + monitoring
+Rate limiting for auth routes
 
-Rate limiting for /auth endpoints
-
-Logging + monitoring using Render Metrics
-
-Database Scaling (MongoDB Atlas)
-
-Move from M0 → M10 cluster
-
-Enable backups
-
-Add IP allowlist
-
-Use database users with scoped permissions
-
+Database (MongoDB Atlas)
+Upgrade to M10+ cluster
+Indexing for faster queries
+IP allowlist
+Daily backups + snapshots
 Security Enhancements
-
-HTTPS enforced (both sides)
-
-Strong JWT secret + short-lived tokens
-
-Refresh token rotation (future enhancement)
-
-Input validation using Pydantic (server-side)
+HTTPS enforced
+Strong JWT secret
+Short expiry + refresh token rotation
+Pydantic validation on every request
 
 Codebase Scalability
-
 Modular folder structure
-
-Separate controllers, services, schemas
-
-Easy to plug in new entities (notes, reminders, etc.)
-
-Separating UI components → reusable system
+Easy to add new collections (notes, projects, etc.)
+Reusable UI components
+API and service layer separation
