@@ -146,6 +146,7 @@ Frontend runs at: [http://localhost:3000](http://localhost:3000)
 | /auth/register | POST   | Register a new user         |
 | /auth/login    | POST   | Login and receive JWT token |
 
+### After receving the token paste it in the authorize button to get authenticated and get access to the rest of the endpoins
 ### Profile Endpoints (Protected)
 
 | Endpoint        | Method | Description                |
