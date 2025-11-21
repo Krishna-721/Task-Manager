@@ -1,19 +1,76 @@
-export default function TaskCard({ task }: any) {
+"use client";
+
+interface TaskCardProps {
+  task: any;
+  onDelete: (id: string) => void;
+  onToggle: (task: any) => void;
+  onEdit: (task: any) => void;
+}
+
+export default function TaskCard({ task, onDelete, onToggle, onEdit }: TaskCardProps) {
   return (
     <div
       className="
-        p-4 rounded-2xl shadow-xl
-        bg-[#fff9d6] 
-        border border-yellow-200
-        transform hover:-translate-y-1 hover:shadow-2xl
-        transition duration-300
+        bg-white/70 
+        backdrop-blur-xl 
+        rounded-2xl 
+        p-4 
+        shadow-xl 
+        border border-white/60
+        transition-all
       "
-      style={{
-        background: "linear-gradient(135deg, #fff7c2, #ffeaa7)",
-      }}
     >
       <h3 className="text-lg font-bold text-gray-800">{task.title}</h3>
-      <p className="text-gray-700 text-sm mt-1">{task.description}</p>
+
+      {task.description && (
+        <p className="text-gray-700 text-sm mt-1">{task.description}</p>
+      )}
+
+      <div className="flex justify-end gap-3 mt-4">
+
+        {/* EDIT */}
+        <button
+          onClick={() => onEdit(task)}
+          className="
+            px-3 py-1 
+            rounded-xl
+            text-sm font-semibold
+            transition
+            bg-yellow-500/70 hover:bg-yellow-600 text-white
+          "
+        >
+          Edit
+        </button>
+
+        {/* DONE/UNDO */}
+        <button
+          onClick={() => onToggle(task)}
+          className="
+            px-3 py-1 
+            rounded-xl
+            text-sm font-semibold
+            transition 
+            bg-sky-500/70 hover:bg-sky-600 text-white
+          "
+        >
+          {task.completed ? "Undo" : "Done"}
+        </button>
+
+        {/* DELETE */}
+        <button
+          onClick={() => onDelete(task.id)}
+          className="
+            px-3 py-1 
+            rounded-xl
+            text-sm font-semibold
+            transition 
+            bg-red-500/70 hover:bg-red-600 text-white
+          "
+        >
+          Delete
+        </button>
+
+      </div>
     </div>
   );
 }

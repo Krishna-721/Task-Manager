@@ -31,9 +31,9 @@ export default function RegisterPage() {
         p-8 rounded-3xl shadow-2xl
       ">
 
-        <h1 className="text-3xl font-bold text-center text-black drop-shadow-lg">
-          Create Account 🌤
-        </h1>
+        <h1 className="text-3xl font-bold text-center text-blue-600 drop-shadow-lg">
+          Create your Account to become a Traveler! 🌤
+        </h1><br></br>
         <p className="text-center text-black/70 mb-6">
           Join the SkyBoard journey.
         </p>
@@ -62,8 +62,7 @@ export default function RegisterPage() {
 
         <button
           onClick={handleRegister}
-          className="w-full py-3 bg-sky-600 hover:bg-sky-700 text-white rounded-xl shadow-lg"
-        >
+          className="w-full py-3 bg-sky-600 hover:bg-sky-700 text-white rounded-xl shadow-lg">
           Register
         </button>
 
