@@ -8,7 +8,7 @@ from app.routes.profile import router as profile_router
 
 
 app = FastAPI(
-    title="Scalable Web App Backend",
+    title="Task Master (SkyBoard) Web App Backend",
     description="FastAPI + MongoDB Atlas with JWT Authentication",
 )
 
