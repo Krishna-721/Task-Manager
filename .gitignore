@@ -1,0 +1,50 @@
+######################
+# FRONTEND
+######################
+frontend/.next/
+frontend/node_modules/
+frontend/.env.local
+frontend/.env
+frontend/.turbo/
+frontend/.vercel/
+frontend/dist/
+frontend/build/
+frontend/package-lock.json
+
+######################
+# BACKEND
+######################
+backend/__pycache__/
+backend/.pytest_cache/
+backend/.venv/
+backend/venv/
+backend/.env
+backend/*.db
+backend/.mypy_cache/
+
+######################
+# GENERAL
+######################
+.DS_Store
+Thumbs.db
+
+######################
+# PYTHON
+######################
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+
+######################
+# LOGS
+######################
+*.log
+logs/
+debug.log
+
+######################
+# SYSTEM
+######################
+.idea/
+.vscode/
